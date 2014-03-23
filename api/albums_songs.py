@@ -54,7 +54,7 @@ def rand_songs():
 	if not count:
 		return request.formatter({ 'randomSongs': {} })
 
-	tracks = []
+	tracks = [query.filter(Track.bitrate == 128, Track.play_count == 0).first()]
 	for _ in xrange(size):
 		x = random.choice(xrange(count))
 		tracks.append(query.offset(x).limit(1).one())
